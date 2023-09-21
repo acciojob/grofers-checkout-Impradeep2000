@@ -1,30 +1,21 @@
 const getSumBtn = document.createElement("button");
-const item=document.querySelectorAll('.item');
-const price=document.querySelectorAll('.price');
-
-
 getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
+let table = document.getElementsByTagName("table")[0];
 
 const getSum = () => {
-//Add your code here
-  let totalPrice=0;
-	price.forEach(priceElement=>{
-		totalPrice+=parseInt(priceElement.textContent);
-	});
-    const row=document.createElement('tr');
-	const totalPriceCell=document.createElement('td');
-	totalPriceCell.textContent="totalPrice";
-	totalPriceCell.colspan=1;
+    let sum = 0;
+    let priceArr = document.querySelectorAll(".price");
 
-	const totalPriceAmountCell=document.createElement('td');
-	totalPriceAmountCell.textContent=totalPrice;
+    priceArr.forEach((singleEle) => {
+        sum += Number(singleEle.innerText);
+    })
 
-	row.appendChild(totalPriceCell);
-	row.appendChild(totalPriceAmountCell);
+    let totalTR = document.createElement("tr");
+    totalTR.setAttribute("id", "ans");
+    totalTR.innerText = sum;
 
-	const tableBody=document.querySelector('table tbody');
-	tableBody.appendChild(row);
+    table.appendChild(totalTR);
 };
 
 getSumBtn.addEventListener("click", getSum);
